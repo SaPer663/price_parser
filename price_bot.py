@@ -5,6 +5,7 @@ import cherrypy
 import telebot
 from config import token, chat_id
 from parser_ozon import receiving_price
+from time import sleep
 
 BOT_TOKEN = token
 WEBHOOK_SSL_CERT = '/home/saper663/webhook_cert.pem'

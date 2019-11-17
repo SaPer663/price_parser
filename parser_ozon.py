@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 from time import sleep
-from price_bot import send_message
 import requests
 
 
