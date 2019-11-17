@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from time import sleep
+from price_bot import send_message
 import requests
 
 
@@ -27,5 +28,12 @@ def receiving_price():
     price = mining_nunber(html_text.get_text())
     return price
 
-
+if __name__ == '__main__':
+    price = 0
+    while True:
+        new_price = receiving_price()
+        if new_price != price:
+            price = new_price
+            send_message(f'На озон - {price}')
+        sleep(600)
     
