@@ -3,21 +3,21 @@
 
 import cherrypy
 import telebot
-from config import token
+from config import token, chat_id
 
 BOT_TOKEN = token
 WEBHOOK_SSL_CERT = '/home/saper663/webhook_cert.pem'
-
+Chat_id = chat_id
 bot = telebot.TeleBot(BOT_TOKEN)
+
 
 @bot.message_handler(commands=["start"])
 def command_start(message):
     bot.send_message(message.chat.id, "Привет! Я price_bot")
-    id = message.chat.id
-    print(id)
+    
 
-#def send_message(message,):
-#    bot.send_message(message.chat.id, "Привет! Я price_bot")
+def send_message(text, id=Chat_id):
+    bot.send_message(id, text)
 
 class WebhookServer(object):
     # index равнозначно /, т.к. отсутствию части после ip-адреса (грубо говоря)

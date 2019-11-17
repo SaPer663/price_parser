@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 from time import sleep
+from price_bot import send_message
 import requests
-import cherrypy
-import telebot
+
 
 
 url = 'https://www.ozon.ru/context/detail/id/33471742/'
@@ -33,7 +33,6 @@ while True:
     new_price = receiving_price()
     if new_price != price:
         price = new_price
-        print(price)
-        continue
+        send_message(f'На озон - {price}')
     sleep(30)
-    print(30)
+    
