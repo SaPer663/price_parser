@@ -4,6 +4,7 @@
 import cherrypy
 import telebot
 from config import token, chat_id
+from parser_ozon import receiving_price
 
 BOT_TOKEN = token
 WEBHOOK_SSL_CERT = '/home/saper663/webhook_cert.pem'
@@ -41,3 +42,11 @@ if __name__ == '__main__':
         'engine.autoreload.on': False
     })
     cherrypy.quickstart(WebhookServer(), '/', {'/': {}})
+
+price = 0
+while True:
+    new_price = receiving_price()
+    if new_price != price:
+        price = new_price
+        send_message(f'На озон - {price}')
+    sleep(600)

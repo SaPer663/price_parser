@@ -28,11 +28,5 @@ def receiving_price():
     price = mining_nunber(html_text.get_text())
     return price
 
-price = 0
-while True:
-    new_price = receiving_price()
-    if new_price != price:
-        price = new_price
-        send_message(f'На озон - {price}')
-    sleep(30)
+
     
