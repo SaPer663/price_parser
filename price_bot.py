@@ -44,10 +44,10 @@ if __name__ == '__main__':
     })
     cherrypy.quickstart(WebhookServer(), '/', {'/': {}})
 
-price = 0
-while True:
-    new_price = receiving_price()
-    if new_price != price:
-        price = new_price
-        send_message(f'На озон - {price}')
-    sleep(600)
+    price = 0
+    while True:
+        new_price = receiving_price()
+        if new_price != price:
+            price = new_price
+            send_message(f'На озон - {price}')
+        sleep(600)
