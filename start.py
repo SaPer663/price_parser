@@ -9,6 +9,7 @@ import requests
 
 
 if __name__ == '__main__':
+    print('working')
     price_ozon_12_digit = 0
     price_ozon_18_digit = 0
     price_petshop_12_digit = 0
