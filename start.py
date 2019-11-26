@@ -27,16 +27,16 @@ if __name__ == '__main__':
         new_price_petshop_18 = price_petshop_18()
         if new_price_ozon_12 != price_ozon_12_digit:
             data_base_price['o_12'] = new_price_ozon_12
-            send_message(f'На озон за 12кг - {price_ozon_12_digit}')
+            send_message(f'На озон за 12кг - {data_base_price['o_12']}')
         if new_price_ozon_18 != price_ozon_18_digit:
             data_base_price['o_18'] = new_price_ozon_18
-            send_message(f'На озон за 18кг - {price_ozon_18_digit}')
+            send_message(f'На озон за 18кг - {data_base_price['o_18']}')
         if new_price_petshop_12 != price_petshop_12_digit:
             data_base_price['p_12'] = new_price_petshop_12
-            send_message(f'На petshop за 12кг - {price_petshop_12_digit}')
+            send_message(f'На petshop за 12кг - {data_base_price['p_12']}')
         if new_price_petshop_18 != price_petshop_18_digit:
             data_base_price['p_18'] = new_price_petshop_18
-            send_message(f'На petshop за 18кг - {price_petshop_18_digit}')
+            send_message(f'На petshop за 18кг - {data_base_price['p_18']}')
         if check_db != data_base_price:
             with open(path, 'w') as db:
                 json.dump(data_base_price, db)
