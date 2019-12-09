@@ -3,7 +3,7 @@
 
 import cherrypy
 import telebot
-from config import token, chat_id, path_to_cert
+from config import token, chat_id, path_to_cert, url_server
 
 
 BOT_TOKEN = token
@@ -33,7 +33,7 @@ class WebhookServer(object):
 if __name__ == '__main__':
 
     bot.remove_webhook()
-    bot.set_webhook(url='https://104.244.79.200:8443/price/',
+    bot.set_webhook(url=url_server,
                     certificate=open(WEBHOOK_SSL_CERT, 'r')) 
  
     cherrypy.config.update({
