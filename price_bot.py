@@ -3,11 +3,11 @@
 
 import cherrypy
 import telebot
-from config import token, chat_id
+from config import token, chat_id, path_to_cert
 
 
 BOT_TOKEN = token
-WEBHOOK_SSL_CERT = '/home/saper663/webhook_cert.pem'
+WEBHOOK_SSL_CERT = path_to_cert
 Chat_id = chat_id
 bot = telebot.TeleBot(BOT_TOKEN)
 
