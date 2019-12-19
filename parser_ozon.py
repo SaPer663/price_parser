@@ -1,30 +1,29 @@
 from bs4 import BeautifulSoup
 from time import sleep
-from parser_petshop import get_html, mining_nunber
+from config import url_ozon, url_ozon_of_get_json
 import requests
 import re
+import json
 
 
-
-url_ozon = 'https://www.ozon.ru/context/detail/id/33471742/'
-funtion = lambda tag: tag.name == 'span' and len(tag.attrs) == 2
-                          
-def data_extraction_from_html(func,url, possition):     
-    soup = BeautifulSoup(get_html(url), features='lxml')
-    text = str(soup.findAll(func))
-    result = re.findall(r'\d.\d{3}', text)
-    return result[possition]
-
-def receiving_price(func, url, possition):
-    price_string = data_extraction_from_html(func, url, possition)
-    price = mining_nunber(price_string)
-    return price
+def data_extraction_from_server():     
+    s = requests.Session()
+    s.get(url_ozon)   
+    sleep(2)
+    return s.get(url_ozon_of_get_json).text
 
 
-def price_ozon_18():
-    price = receiving_price(funtion, url_ozon, 7)
-    return price
+def price_ozon_12_18(price_12, price_18):
+    result = [price_12, price_18]
+    json_input = json.loads(data_extraction_from_server())
+    list_prices_and_titles = json_input['pdp']['product']['product-220660-default-1']\
+                                       ['readyAspects']['regular']['regularVariants']\
+                                       [1]['aspectVariants']
+    for price in list_prices_and_titles:
+        if int(price['name']) == 12000 and price['available']:
+            result[0] = price['price']['totalPrice']
+        if int(price['name']) == 18000 and price['available']:
+            result[1] = price['price']['totalPrice']
 
-def price_ozon_12():
-    price = receiving_price(funtion, url_ozon, 6)
-    return price
+    return result
+    
