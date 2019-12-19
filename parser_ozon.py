@@ -10,12 +10,12 @@ def data_extraction_from_server():
     s = requests.Session()
     s.get(url_ozon)   
     sleep(2)
-    return s.get(url_ozon_of_get_json).text
+    return s.get(url_ozon_of_get_json).json()
 
 
 def price_ozon_12_18(price_12, price_18):
     result = [price_12, price_18]
-    json_input = json.loads(data_extraction_from_server())
+    json_input = data_extraction_from_server()
     list_prices_and_titles = json_input['pdp']['product']['product-220660-default-1']\
                                        ['readyAspects']['regular']['regularVariants']\
                                        [1]['aspectVariants']
@@ -26,4 +26,3 @@ def price_ozon_12_18(price_12, price_18):
             result[1] = price['price']['totalPrice']
 
     return result
-    
