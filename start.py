@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 from parser_petshop import get_html
 from price_bot import send_message
-from parser_ozon import price_ozon_12, price_ozon_18
+from parser_ozon import price_ozon_12_18
 from parser_petshop import price_petshop_12, price_petshop_18
 from config import path
 import requests
@@ -18,8 +18,8 @@ if __name__ == '__main__':
     
     while True:
         check_db = str(data_base_price)
-        new_price_ozon_12 = price_ozon_12()
-        new_price_ozon_18 = price_ozon_18()
+        new_price_ozon_12, new_price_ozon_18 = price_ozon_12_18(data_base_price['o_12'],\
+                                                                data_base_price['o_18'])
         new_price_petshop_12 = price_petshop_12()
         new_price_petshop_18 = price_petshop_18()
         if new_price_ozon_12 != data_base_price['o_12']:
