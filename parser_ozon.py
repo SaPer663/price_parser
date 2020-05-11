@@ -6,7 +6,7 @@ import re
 import json
 
 
-def data_extraction_from_server():     
+def get_json_from_server():     
     s = requests.Session()
     s.get(url_ozon)   
     sleep(2)
@@ -15,7 +15,7 @@ def data_extraction_from_server():
 
 def price_ozon_12_18(price_12, price_18):
     result = [price_12, price_18]
-    json_input = data_extraction_from_server()
+    json_input = get_json_from_server()
     list_prices_and_titles = json_input['pdp']['product']['product-220660-default-1']\
                                        ['readyAspects']['regular']['regularVariants']\
                                        [1]['aspectVariants']
