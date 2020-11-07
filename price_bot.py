@@ -22,7 +22,7 @@ def command_price(message):
     load_price = read_file()
     price_12 = load_price['p_12']
     price_18 = load_price['p_18']
-    bot.send_message(message.chat.id, f'На petshop\n за 12кг - {price_12}\n На petshop за 18кг - {price_18}')
+    bot.send_message(message.chat.id, f'На petshop цена:\n за 12кг - {price_12}\n за 18кг - {price_18}')
     
 
 def send_message(text, id=Chat_id):
