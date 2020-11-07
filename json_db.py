@@ -1,8 +1,8 @@
 import json
-#from config import path
+from config import path
 
 
-PATH = 'json_base.json'
+PATH = path
 
 def read_file():
     try:
